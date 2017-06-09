@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 
 @Entity
 public class Salle implements Serializable {
@@ -26,7 +28,7 @@ public class Salle implements Serializable {
 	private String description;
 	@NotNull
 	private int contenue;
-	@ManyToMany(mappedBy = "salle")
+	@OneToMany(mappedBy = "salle")
 	private Collection<Hospitalisation> hospitalisation;
 
 	public Salle() {

@@ -9,8 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -27,20 +26,21 @@ public class Hospitalisation implements Serializable {
 	@JoinColumn(name = "idPatient")
 	private Patient patient;
 	@NotNull
-	@ManyToMany
-	@JoinTable(name="HOSP_SALL",joinColumns=
-	@JoinColumn(name="NUM_HOSP"),inverseJoinColumns=
-	@JoinColumn(name="NUM_SALL"))
-	private Collection<Salle> salle;
+	@ManyToOne
+	@JoinColumn(name = "idSalle")
+	// @JoinTable(name = "HOSP_SALL", joinColumns = @JoinColumn(name =
+	// "NUM_HOSP"), inverseJoinColumns = @JoinColumn(name = "NUM_SALL"))
+	private Salle salle;
 	@NotNull
-	@DateTimeFormat(pattern="yyyy-mm-dd hh:nn")
+	@DateTimeFormat(pattern = "yyyy-mm-dd hh:nn")
 	private Date date;
+
 	public Hospitalisation() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Hospitalisation(Patient patient, Collection<Salle> salle, Date date) {
+
+	public Hospitalisation(Patient patient, Salle salle, Date date) {
 		super();
 		this.patient = patient;
 		this.salle = salle;
@@ -50,33 +50,39 @@ public class Hospitalisation implements Serializable {
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public Patient getPatient() {
 		return patient;
 	}
+
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
-	
-	public Collection<Salle> getSalle() {
+
+	public Salle getSalle() {
 		return salle;
 	}
-	public void setSalle(Collection<Salle> salle) {
+
+	public void setSalle(Salle salle) {
 		this.salle = salle;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 }
 
 @Entity
-class Patient implements Serializable{
+class Patient implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

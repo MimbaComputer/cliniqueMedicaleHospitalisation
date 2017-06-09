@@ -2,7 +2,6 @@ package org.mimba.bao.dao;
 
 import java.util.Date;
 
-import org.mimba.bao.entities.Hospitalisation;
 import org.mimba.bao.entities.Salle;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

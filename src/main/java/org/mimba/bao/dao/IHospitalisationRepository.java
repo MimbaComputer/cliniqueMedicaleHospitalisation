@@ -17,14 +17,20 @@ public interface IHospitalisationRepository extends JpaRepository<Hospitalisatio
 
 	public Page<Hospitalisation> findByDate(@Param("date") Date date, Pageable pageable);
 
-	@Query("select h from Hospitalisation h where h.patient.id=:id")
-	public Page<Hospitalisation> patientHospitalisationParId(@Param("id") Long id, Pageable pageable);
+	@Query("select h from Hospitalisation h where h.patient.id=:idPatient")
+	public Page<Hospitalisation> patientHospitalisationParId(@Param("idPatient") Long idPatient, Pageable pageable);
 
-//	@Query("select h from Hospitalisation h where h.salle.id=:id")
-//	public Page<Hospitalisation> salleHospitalisationParId(@Param("id") Long id, Pageable pageable);
+	@Query("select h from Hospitalisation h where h.salle.id=:idSalle")
+	public Page<Hospitalisation> salleHospitalisationParId(@Param("idSalle") Long idSalle, Pageable pageable);
 
-//	@Query("select hs from HOSP_SALL hs where hs.NUM_HOSP=:idhosp and hs.NUM_SALL=:idsall")
-//	public Page<Hospitalisation> salleHOSP_SALLParId(@Param("idhosp") Long idhosp,
-//													 @Param("idsall") Long idsall, Pageable pageable);
+	// @Query("select h from Hospitalisation h where h.salle.id=:id")
+	// public Page<Hospitalisation> salleHospitalisationParId(@Param("id") Long
+	// id, Pageable pageable);
+
+	// @Query("select hs from HOSP_SALL hs where hs.NUM_HOSP=:idhosp and
+	// hs.NUM_SALL=:idsall")
+	// public Page<Hospitalisation> salleHOSP_SALLParId(@Param("idhosp") Long
+	// idhosp,
+	// @Param("idsall") Long idsall, Pageable pageable);
 
 }
